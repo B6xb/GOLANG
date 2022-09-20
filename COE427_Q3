@@ -1,0 +1,32 @@
+package main
+
+import (
+	"fmt"
+	"math/rand"
+	"time"
+)
+
+func main() {
+
+	var response string
+	rand.Seed(time.Now().Unix())
+
+	arr := rand.Perm(1000000)
+
+	fmt.Print("Do you want to start computing? (y/n) ")
+	fmt.Scan(&response)
+
+	start := time.Now()
+	if "y" == response {
+		sum := 0
+		for i := range arr {
+			sum += arr[i]
+		}
+		finish := time.Since(start)
+		fmt.Println("It took: ", finish)
+	} else {
+		fmt.Println("You Said No!!!")
+
+	}
+
+}
