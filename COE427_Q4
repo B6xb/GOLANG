@@ -1,0 +1,51 @@
+package main
+
+import (
+	"fmt"
+	"math/rand"
+	"time"
+)
+
+func main() {
+
+	var response string
+
+	// Seed of randomization
+	rand.Seed(time.Now().Unix())
+
+	// generates a 10000000 random integer
+	arr := rand.Perm(1000000)
+
+	// Make the channels
+	ch1 := make(chan int)
+	ch2 := make(chan int)
+
+	fmt.Print("Do you want to start computing? (y/n) ")
+	fmt.Scan(&response)
+
+	// run time
+	start := time.Now()
+
+	if "y" == response {
+
+		go concurrSum(arr[:len(arr)/2], ch1)
+		go concurrSum(arr[len(arr)/2:], ch2)
+
+		finish := time.Since(start)
+
+		fmt.Println("It took: ", finish)
+	} else {
+		fmt.Println("You Said No!!!")
+
+	}
+}
+
+func concurrSum(s []int, c chan int) {
+
+	sum := 0
+	for _, val := range s {
+		sum += val
+	}
+
+	c <- sum
+}
