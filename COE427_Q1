@@ -1,0 +1,47 @@
+package main
+
+import (
+	"fmt"
+)
+
+func main() {
+
+	var first int
+	var second int
+	var opt string
+
+	fmt.Print("Enter the First integer: ")
+	fmt.Scan(&first)
+	fmt.Print("Enter the Second integer: ")
+	fmt.Scan(&second)
+	fmt.Print("Enter the Arthmetic operation: ")
+	fmt.Scan(&opt)
+
+	result, state := computeOpt(first, second, opt)
+	if state {
+		fmt.Println("The answer is:", result)
+	} else {
+		fmt.Println("Invalid Operaation")
+	}
+}
+
+func computeOpt(x int, y int, oprt string) (int, bool) {
+
+	switch oprt {
+
+	case "+":
+		return x + y, true
+
+	case "-":
+		return x - y, true
+
+	case "/":
+		return x / y,
+			true
+
+	case "*":
+		return x * y, true
+
+	}
+	return 0, false
+}
