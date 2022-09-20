@@ -1,0 +1,28 @@
+package main
+
+import "fmt"
+
+func main() {
+	m1 := [4][4]int{
+		{1, 1, 1, 1}, {1, 1, 1, 1}, {1, 1, 1, 1}, {1, 1, 1, 1},
+	}
+	m2 := [4][4]int{
+		{1, 1, 1, 1}, {1, 1, 1, 1}, {1, 1, 1, 1}, {1, 1, 1, 1},
+	}
+
+	result := multplyMtx(m1, m2)
+
+	fmt.Println("The Result Matrix is: ", result)
+}
+
+func multplyMtx(m1 [4][4]int, m2 [4][4]int) [4][4]int {
+	var result [4][4]int
+	for i := 0; i < len(m1); i++ {
+		for j := 0; j < len(m2); j++ {
+			for k := 0; k < len(m1); k++ {
+				result[i][k] += m1[i][j] * m2[i][j]
+			}
+		}
+	}
+	return result
+}
